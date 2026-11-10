@@ -1,19 +1,9 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+const pageTitle = "Services";
 ---
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<p>Services</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout pageTitle={pageTitle}>
+  <main>
+  	Content index here
+  </main>
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const pageTitle = "Kumpulan Tag";
+
+// 1. Ambil semua artikel
+const allPosts = await getCollection('blog');
+
+// 2. Kumpulkan semua tag unik dari seluruh artikel
+const tags = [...new Set(
+  allPosts
+    .map((post) => post.data.tags || [])
+    .flat()
+    .map((tag) => tag.toLowerCase())
+)];
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <main>
+     <div class="tags-container">
+      <!-- 3. Tampilkan setiap tag sebagai link yang mengarah ke halaman [tag].astro -->
+      {tags.map((tag) => (
+        <a href={`/tags/${tag}`} class="tag-link">#{tag}</a>
+      ))}
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .tag-link {
+    display: inline-block;
+    font-size: 1.15rem;
+    color: rgb(var(--accent));
+    border: 2px solid rgba(var(--accent), 0.3);
+    padding: 0.5em 1em;
+    border-radius: 0.5rem;
+    text-transform: lowercase;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .tag-link:hover {
+    background-color: rgba(var(--accent), 0.1);
+    border-color: rgb(var(--accent));
+    transform: translateY(-2px);
+  }
+</style>

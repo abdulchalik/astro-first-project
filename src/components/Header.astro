@@ -1,6 +1,7 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import Menu from './Menu.astro';
 ---
 
 <header>
@@ -8,7 +9,9 @@ import HeaderLink from './HeaderLink.astro';
 		<h2>
 			<a href="/">{SITE_TITLE}</a>
 		</h2>
-		<div class="internal-links">
+		<Menu />
+		<div class="internal-links nav-links">
+			
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
